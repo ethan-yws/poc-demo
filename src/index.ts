@@ -1,7 +1,7 @@
 import { createConnection } from "typeorm";
 import express from "express";
-import { Employee } from "./entities/Employee";
-import { EmployeeUpdated } from "./entities/EmployeeUpdated";
+import { Person } from "./entities/Person";
+import { PersonUpdated } from "./entities/PersonUpdated";
 import { insertToDBRouter } from "./routers/insert_to_db";
 import { generateCSVRouter } from "./routers/generate_csv";
 
@@ -16,7 +16,7 @@ const main = async () => {
       username: "s708800",
       password: undefined,
       database: "typeorm",
-      entities: [Employee, EmployeeUpdated],
+      entities: [Person, PersonUpdated],
       synchronize: true,
     });
 
@@ -27,8 +27,8 @@ const main = async () => {
     app.use(insertToDBRouter);
     app.use(generateCSVRouter);
 
-    app.listen(7000, () => {
-      console.log("Now running on port 7000");
+    app.listen(5000, () => {
+      console.log("Now running on port 5000");
     });
   } catch (e) {
     console.error(e);

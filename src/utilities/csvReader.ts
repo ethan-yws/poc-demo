@@ -1,11 +1,17 @@
+import { PersonProp } from "../interfaces/person.interface";
+
 const csv = require("csv-parser");
 const fs = require("fs");
 
-const res: object[] = [];
+const res: PersonProp[] = [];
 
-fs.createReadStream("src/sampleData/samplecsv20k.csv")
-  .pipe(csv())
-  .on("data", (data: object) => res.push(data))
-  .on("end", () => {
-    console.log(res);
-  });
+export const csvReader = (file_path: string): PersonProp[] => {
+  fs.createReadStream(file_path)
+    .pipe(csv())
+    .on("data", (data: PersonProp) => res.push(data))
+    .on("end", () => {
+      console.log("Parsed data from CSV");
+    });
+
+  return res;
+};
