@@ -5,7 +5,7 @@ import { csvReader } from "../utilities/csvReader";
 const router = express.Router();
 
 router.get("/api/generateCSV", (req, res) => {
-  const file_path = "src/sampleData/data20k.csv";
+  const file_path = "src/sampleData/data100k.csv";
   const data = csvReader(file_path);
   const dataRes = ageFilter(data, 20);
 

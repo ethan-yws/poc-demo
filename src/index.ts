@@ -4,6 +4,7 @@ import { Person } from "./entities/Person";
 import { PersonUpdated } from "./entities/PersonUpdated";
 import { insertToDBRouter } from "./routers/insert_to_db";
 import { generateCSVRouter } from "./routers/generate_csv";
+import { password, db_port, username, HOST_PORT } from "../config";
 
 const app = express();
 
@@ -12,9 +13,9 @@ const main = async () => {
     await createConnection({
       type: "postgres",
       host: "localhost",
-      port: 5433,
-      username: "s708800",
-      password: undefined,
+      port: db_port,
+      username: username,
+      password: password,
       database: "typeorm",
       entities: [Person, PersonUpdated],
       synchronize: true,
@@ -27,8 +28,8 @@ const main = async () => {
     app.use(insertToDBRouter);
     app.use(generateCSVRouter);
 
-    app.listen(5000, () => {
-      console.log("Now running on port 5000");
+    app.listen(HOST_PORT, () => {
+      console.log(`Now running on port ${HOST_PORT}`);
     });
   } catch (e) {
     console.error(e);

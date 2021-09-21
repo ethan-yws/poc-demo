@@ -1,6 +1,7 @@
 import express from "express";
 import { PersonUpdated } from "../entities/PersonUpdated";
 import { ageFilter } from "../pipelines/filters/ageFilter";
+import { checkIsSenior } from "../utilities/checkIsSenior";
 import { csvReader } from "../utilities/csvReader";
 
 const router = express.Router();
@@ -8,9 +9,9 @@ const router = express.Router();
 router.post("/api/insert2DB", async (req, res) => {
   const start = performance.now();
 
-  const file_path = "src/sampleData/data20k.csv";
+  const file_path = "src/sampleData/data100k.csv";
   const data = csvReader(file_path);
-  const dataRes = ageFilter(data, 20);
+  const dataRes = ageFilter(data, 65);
 
   dataRes.forEach((el) =>
     PersonUpdated.create({
