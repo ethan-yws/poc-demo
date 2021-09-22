@@ -15,3 +15,19 @@
 - integration with Nest.js
 
 ### How to start
+
+##### install all dependencies
+
+`npm i`
+
+##### setup your configurations in
+
+`src/config.ts`
+
+##### run the server
+
+`npm start`
+
+##### Performance option
+
+- Switch 'pg' to 'pg-native'

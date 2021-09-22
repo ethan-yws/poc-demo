@@ -10,6 +10,8 @@ router.get("/api/generateCSV", (req, res) => {
   const dataRes = ageFilter(data, 20);
 
   res.send(dataRes);
+
+  // TODO: wirte dataRes into csv file
 });
 
 export { router as generateCSVRouter };
